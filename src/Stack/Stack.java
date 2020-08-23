@@ -1,21 +1,21 @@
 package Stack;
 
 public class Stack {
-    char[] stack;
+    int[] stack;
     int size;
     int nextIndex;
 
     public Stack( int size ) {
-        stack = new char[size];
+        stack = new int[size];
         this.size = size;
         this.nextIndex = 0;
     }
 
-    public void push( char value ) {
+    public void push( int value ) {
         stack[nextIndex++] = value;
     }
 
-    public char pop() {
+    public int pop() {
         return stack[--nextIndex];
     }
 
@@ -30,10 +30,10 @@ public class Stack {
     public static void main( String[] args ) {
         Stack s = new Stack(10);
 
-        s.push( '1' );
-        s.push( '2' );
-        s.push( '3' );
-        s.push( '+' );
+        s.push( 1 );
+        s.push( 2 );
+        s.push( 3 );
+        s.push( '+' );  // Converted to the ASCII for '+'
 
         if( s.size() != 10 )
             throw new RuntimeException();
@@ -47,28 +47,28 @@ public class Stack {
         if( s.nextIndex() != 3 )
             throw new RuntimeException();
 
-        if( s.pop() != '3' )
+        if( s.pop() != 3 )
             throw new RuntimeException();
 
-        if( s.pop() != '2' )
+        if( s.pop() != 2 )
             throw new RuntimeException();
 
-        if( s.pop() != '1' )
+        if( s.pop() != 1 )
             throw new RuntimeException();
 
         Stack s2 = new Stack(2);
-        s2.push('1');
-        s2.push('2');
+        s2.push(1);
+        s2.push(2);
 
         try {
-            s2.push('3');
+            s2.push(3);
         } catch( ArrayIndexOutOfBoundsException e ) {
             System.out.println("Caught expected array exception");
             // Good this is expected
         }
 
         Stack s3 = new Stack(1);
-        s3.push('1');
+        s3.push(1);
         s3.pop();
 
         try {
